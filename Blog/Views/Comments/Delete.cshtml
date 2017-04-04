@@ -1,0 +1,96 @@
+﻿@model Blog.Models.Comments
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="container-fluid backdrop-gradient">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h2>Delete</h2>
+
+            <h3>Are you sure you want to delete this?</h3>
+                <hr />
+                <h4>Comment: @Html.DisplayFor(model => model.Body)</h4>
+            <div style="padding-top:1em;">
+
+
+                @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Author.FirstName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Author.FirstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BlogPostId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BlogPostId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Created)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Created)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Modified)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Modified)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ModifiedNote)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ModifiedNote)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Body)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Body)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProfilePicURL)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProfilePicURL)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Private)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Private)
+                </dd>
+
+            </dl>*@
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn links-btn" />
+                        @Html.ActionLink("Back to Post", "Details", "BlogPosts", new { Slug = ViewBag.Slug }, new { @class = "links-btn btn" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

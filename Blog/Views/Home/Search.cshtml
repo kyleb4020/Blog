@@ -1,0 +1,197 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Blog.Models.BlogPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
+<h2>Search Results</h2>
+<div class="container-fluid">
+    <hr />
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        if (i % 2 == 0)
+        {
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-1 blog-index-standard even">
+                    <div class="row ">
+                        <div class="col-lg-10 col-lg-offset-1 text-center">
+                            <h3>@Html.ActionLink(Model[i].Title, "Details", new { Slug = Model[i].Slug }, new { @class = "links", style = "font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" })</h3>
+                        </div>
+                    </div>
+                    @if (Model[i].Body.Length > 250)
+                    {
+                        string truncBody = Model[i].Body.Substring(0, 250) + "...</p>";
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                @if (Model[i].MediaURL != null)
+                                {
+                                    <img src="@Model[i].MediaURL" alt="" class="pull-left img-responsive img-rounded" style="width:50%; margin-right:1em; margin-bottom:1em;" />
+                                }
+                                @Html.Raw(truncBody)
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                @if (Model[i].MediaURL != null)
+                                {
+                                    <img src="@Model[i].MediaURL" alt="" class="pull-left img-responsive img-rounded" style="width:50%; margin-right:1em; margin-bottom:1em;" />
+                                }
+                                @Html.Raw(Model[i].Body)
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <p align="right" style="font-size:0.75em">Created: @Html.DisplayFor(model => Model[i].Created.LocalDateTime)</p>
+                        </div>
+                    </div>
+                    @if (Model[i].Modified != null)
+                    {
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <p align="right" style="font-size:0.75em">Modified: @Html.DisplayFor(model => Model[i].Modified.Value.LocalDateTime)</p>
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="row" style="margin-top:1em;">
+                            <div class="col-lg-1 col-lg-offset-1">
+                                @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }, new { @class = "links-btn btn" })
+                            </div>
+                            <div class="col-lg-1 col-lg-offset-1">
+                                @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id }, new { @class = "links-btn btn" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-5 blog-index-standard odd">
+                    <div class="row ">
+                        <div class="col-lg-10 col-lg-offset-1 text-center">
+                            <h3>@Html.ActionLink(Model[i].Title, "Details", new { Slug = Model[i].Slug }, new { @class = "links", style = "font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" })</h3>
+                        </div>
+                    </div>
+                    @if (Model[i].Body.Length > 250)
+                    {
+                        string truncBody = Model[i].Body.Substring(0, 250) + "...</p>";
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                @if (Model[i].MediaURL != null)
+                                {
+                                    <img src="@Model[i].MediaURL" alt="" class="pull-right img-responsive img-rounded" style="width:50%; margin-left:1em; margin-bottom:1em;" />
+                                }
+                                @Html.Raw(truncBody)
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                @if (Model[i].MediaURL != null)
+                                {
+                                    <img src="@Model[i].MediaURL" alt="" class="pull-right img-responsive img-rounded" style="width:50%; margin-left:1em; margin-bottom:1em;" />
+                                }
+                                @Html.Raw(Model[i].Body)
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <p align="right" style="font-size:0.75em">Created: @Html.DisplayFor(model => Model[i].Created.LocalDateTime)</p>
+                        </div>
+                    </div>
+                    @if (Model[i].Modified != null)
+                    {
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <p align="right" style="font-size:0.75em">Modified: @Html.DisplayFor(model => Model[i].Modified.Value.LocalDateTime)</p>
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="row" style="margin-top:1em;">
+                            <div class="col-lg-1 col-lg-offset-1">
+                                @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }, new { @class = "links-btn btn" })
+                            </div>
+                            <div class="col-lg-1 col-lg-offset-1">
+                                @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id }, new { @class = "links-btn btn" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount	@Html.PagedListPager(Model, page => Url.Action("Search", new { page, search = ViewBag.search }))
+        </div>
+    </div>
+</div>
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Private)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Private)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id}, new { @class = "links" }) |
+                @Html.ActionLink("Details", "Details", new { Slug = item.Slug }, new { @class = "links" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "links" })
+            </td>
+        </tr>
+    }
+
+    </table>*@

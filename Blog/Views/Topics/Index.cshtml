@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Blog.Models.Topics>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid backdrop-gradient">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h2>Topics</h2>
+            <hr />
+        </div>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h3>New Topic:</h3>
+                @using (Html.BeginForm("Create", "Topics", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label></label>
+                        <div class="col-md-6">
+                            <input type="text" name="Name" class="form-control" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Create" class="btn links-btn" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-1" style="margin-top:1em; margin-bottom:1em;">
+                <h4>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "links" })</h4>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+            <div class="col-lg-1 col-lg-offset-1" style="margin-top:1em; margin-bottom:1em;">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn links-btn" })
+            </div>
+            <div class="col-lg-1" style="margin-top:1em; margin-bottom:1em;">
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn links-btn" })
+            </div>
+            }
+        </div>
+    }
+</div>

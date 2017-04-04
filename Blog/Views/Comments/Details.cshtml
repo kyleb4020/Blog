@@ -1,0 +1,82 @@
+﻿@model Blog.Models.Comments
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogPostId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogPostId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedNote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePicURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfilePicURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Private)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Private)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "links" }) |
+    @Html.ActionLink("Back to List", "Index", null, null, new { @class = "links" })
+</p>

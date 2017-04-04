@@ -1,0 +1,281 @@
+﻿.navbar-default {
+    background-color: rgb(25,25,25);
+    border-color: rgb(25,25,25);
+}
+
+    .navbar-default .navbar-brand {
+        color: #cccccc;
+        font-size:2em;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    }
+
+        .navbar-default .navbar-brand:hover,
+        .navbar-default .navbar-brand:focus {
+            color: #909090;
+        }
+
+    .navbar-default .navbar-text {
+        color: #cccccc;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        color: #cccccc;
+    }
+
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #909090;
+        }
+
+    .navbar-default .navbar-nav > li > .dropdown-menu {
+        background-color: rgb(25,25,25);
+    }
+
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+            color: #cccccc;
+        }
+
+            .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+            .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+                color: #909090;
+                background-color: #494949;
+            }
+
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+            background-color: #494949;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #909090;
+        background-color: #494949;
+    }
+
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+        color: #909090;
+        background-color: #494949;
+    }
+
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus {
+        color: #909090;
+        background-color: #494949;
+    }
+
+    .navbar-default .navbar-toggle {
+        border-color: #494949;
+    }
+
+        .navbar-default .navbar-toggle:hover,
+        .navbar-default .navbar-toggle:focus {
+            background-color: #494949;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #cccccc;
+        }
+
+    .navbar-default .navbar-collapse,
+    .navbar-default .navbar-form {
+        border-color: #cccccc;
+    }
+
+    .navbar-default .navbar-link {
+        color: #cccccc;
+    }
+
+        .navbar-default .navbar-link:hover {
+            color: #909090;
+        }
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #cccccc;
+    }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            color: #909090;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #909090;
+        background-color: #494949;
+    }
+}
+
+.jumbotron {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #cccccc;
+}
+
+.content-div {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #cccccc;
+    border-radius: 8px;
+    border:solid;
+    border-width:1px;
+    border-color:rgb(25,25,25);
+}
+
+.links {
+    color: #cccccc;
+}
+
+    .links:visited {
+        text-decoration: none;
+        color: #909090;
+    }
+
+    .links:hover {
+        text-decoration: none;
+        color: #909090;
+    }
+
+    .links:active {
+        text-decoration: none;
+        color: #909090;
+    }
+
+.links-btn {
+    color: rgb(25,25,25);
+    background-color: #cccccc;
+    border-color: #909090;
+}
+
+    .links-btn:visited {
+        text-decoration: none;
+        background-color: #909090;
+        color: rgb(25,25,25);
+    }
+
+    .links-btn:hover {
+        text-decoration: none;
+        background-color: #909090;
+        color: rgb(25,25,25);
+    }
+
+    .links-btn:active {
+        text-decoration: none;
+        background-color: #909090;
+        color: rgb(25,25,25);
+    }
+    .link-btn:target {
+        text-decoration: none;
+        background-color: #909090;
+        color: rgb(25,25,25);
+    }
+
+#comment-body {
+    color: #cccccc;
+    background-color: rgb(25,25,25);
+    border-radius: 5px;
+}
+
+.blog-index-standard {
+    background-color: rgba(0, 0, 0, 0.25);
+    padding:1em 1em;
+    margin-top:1em;
+    margin-bottom:1em;
+    border-radius:15px;
+    -webkit-transition: margin-left 5s; /* Safari */
+    transition: margin-left 5s;
+    /*background: rgb(100, 100, 100); /* For browsers that do not support gradients */
+    /*background: -webkit-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Safari 5.1 to 6.0 */
+    /*background: -o-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Opera 11.6 to 12.0 */
+    /*background: -moz-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Firefox 3.6 to 15 */
+    /*background: radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Standard syntax */
+}
+
+/*.blog-index-top {
+    background-color: rgba(128, 128, 128, 0.25);
+    border-radius: 5px 5px 0px 0px;
+    margin-top: 1em;
+}
+
+blog-index-bottom {
+    background-color: rgba(128, 128, 128, 0.25);
+    border-radius: 0px 0px 5px 5px;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}*/
+
+.fill {
+    width: 100%;
+    height: 600px;
+    padding:1em;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-siz: cover;
+    -o-background-size: cover;
+    /*background: rgb(100, 100, 100); /* For browsers that do not support gradients */
+    /*background: -webkit-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Safari 5.1 to 6.0 */
+    /*background: -o-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Opera 11.6 to 12.0 */
+    /*background: -moz-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Firefox 3.6 to 15 */
+    /*background: radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Standard syntax */
+}
+
+/*.backdrop-gradient{
+    /*background: rgb(100, 100, 100); /* For browsers that do not support gradients */
+    /*background: -webkit-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Safari 5.1 to 6.0 */
+    /*background: -o-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Opera 11.6 to 12.0 */
+    /*background: -moz-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Firefox 3.6 to 15 */
+    /*background: radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Standard syntax */
+    /*padding-top:1.5em;
+    /*padding-bottom:1.5em;
+}*/
+
+.form-gradient{
+    border:solid;
+    border-width: 1px;
+    border-color: #cccccc;
+    background-color: rgba(0,0,0,0.25);
+    color:#cccccc
+}
+.comment-gradient{
+    border-radius:3px; 
+    margin-bottom:.25em;
+    padding:1em;
+}
+#comments-list{
+    display:none;
+}
+
+#create-topic-modal .modal-dialog{
+    width: 50%;
+    top: 15%;
+    border: solid;
+    border-width: 2px;
+    border-color:#cccccc;
+    border-radius:5px;
+    background: rgb(100, 100, 100); /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(rgb(100, 100, 100), rgb(25, 25, 25)); /* Standard syntax */
+    padding-top:1.5em;
+    padding-bottom:1.5em;
+}
+.img-start{
+    width: 0%;
+    height: 0%;
+    margin-right:0em;
+    margin-bottom:0em;
+    -webkit-transition: width 2s 1s, height 2s 1s, margin-right 2s 1s, margin-bottom 2s 1s; /* Safari */
+    transition: width 2s 1s, height 2s 1s, margin-right 2s 1s, margin-bottom 2s 1s;
+}
+.blog-img-base{
+    width:50%;
+    height:50%;
+    margin-right:1em; 
+    margin-bottom:1em; 
+    -webkit-transition: width 2s 1s, height 2s 1s, margin-right 2s 1s, margin-bottom 2s 1s; /* Safari */
+    transition: width 2s 1s, height 2s 1s, margin-right 2s 1s, margin-bottom 2s 1s;
+}

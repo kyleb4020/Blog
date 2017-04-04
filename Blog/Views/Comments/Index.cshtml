@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Blog.Models.Comments>
+
+@{
+    ViewBag.Title = "Comments Index";
+}
+
+<h2>Comments Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, null, new {@class="links"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BlogPostId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedNote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfilePicURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Private)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogPostId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfilePicURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Private)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id}, new { @class = "links" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "links" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "links" })
+        </td>
+    </tr>
+}
+
+</table>

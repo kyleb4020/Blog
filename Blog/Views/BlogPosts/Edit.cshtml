@@ -1,0 +1,177 @@
+﻿@model Blog.Models.BlogPost
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container-fluid backdrop-gradient">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <h2>Edit</h2>
+            <h4>@Html.DisplayFor(model => model.Title)</h4>
+
+            @using (Html.BeginForm("Edit", "BlogPosts", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.MediaURL)
+                    <input type="hidden" name="Created" value="@Model.Created" />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    @*<div class="form-group">
+                        <input type="hidden" name="blogTopics" value="@Model.Topics" />
+                        <div class="col-md-2 text-right">
+                            @Html.Label("Current Topics:")
+                        </div>
+                        <div class="col-md-10 pull-right">
+                            <p>
+                                @foreach (var topic in Model.Topics)
+                                {
+                                    if (topic != Model.Topics.Last())
+                                    {
+                                        @Html.DisplayFor(model => topic.Name)<span>, </span>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => topic.Name)
+                                    }
+                                }
+                            </p>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.Label("Upload New Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.MediaURL, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <input name="image" type="file" class="form-control" id="fileUpload" />
+                            @Html.ValidationMessageFor(model => model.MediaURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Topics, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.ListBox("Topics", null)
+                            @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                            <button href="#create-topic-modal" type="button" data-toggle="modal" class="btn links-btn">Create New Topic</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Reason Modified", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ModifiedNote, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ModifiedNote, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Private, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.Private)
+                                @Html.ValidationMessageFor(model => model.Private, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.Published)
+                                @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "links-btn btn" })
+        </div>
+    </div>
+</div>
+
+
+
+@*Topics Modal*@
+<div class="modal fade" id="create-topic-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="container modal-dialog">
+        <div class="row">
+            <div class="col-lg-1 pull-right">
+                <button type="button" class="close" style="color:#cccccc;" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-1">
+                @using (Html.BeginForm("Create", "Topics", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="Name">New Topic:</label>
+                        <input type="text" name="Name" class="form-control form-gradient" />
+                    </div>
+                    <div class="form-group col-lg-6 col-lg-offset-1">
+                        <button type="submit" class="btn links-btn">Submit</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button type="button" class="btn links-btn" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            tinymce.init({
+                selector: '#Body'
+            });
+        });
+    </script>
+    @*<script>
+        $(document).ready(function () {
+            $("#Topics").multiselect('rebuild');
+        });
+    </script>*@
+}

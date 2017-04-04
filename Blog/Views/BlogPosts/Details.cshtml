@@ -1,0 +1,290 @@
+﻿@model Blog.Models.BlogPost
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container-fluid backdrop-gradient">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h2 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">@Html.DisplayFor(model => model.Title)</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <p align="right" style="font-size:0.75em;" id="post_created"></p>
+        </div>
+    </div>
+    @if (Model.Topics != null)
+    {
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p align="right" style="font-size:1em;">Topics</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 pull-right">
+            </div>
+            <div class="col-lg-4 pull-right">
+                <p style="font-size:.75em;" align="right">
+                    @foreach (var topic in Model.Topics)
+                    {
+                        if (topic != Model.Topics.Last())
+                        {
+                            @Html.ActionLink(topic.Name, "Details", "Topics", new { id = topic.Id }, new { @class = "links" })<span>, </span>
+                        }
+                        else
+                        {
+                            @Html.ActionLink(topic.Name, "Details", "Topics", new { id = topic.Id }, new { @class = "links" })
+                        }
+                    }
+                </p>
+            </div>
+        </div>
+    }
+    <hr />
+
+
+
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2" style="font-size:1.25em; margin-bottom:2em;">
+            @if (Model.MediaURL != null)
+            {
+                <img class="img-responsive img-rounded pull-left img-start blog-img" src="@Model.MediaURL" alt="" />
+            }
+            @Html.Raw(Model.Body)
+        </div>
+    </div>
+    @if (Request.IsAuthenticated)
+    {
+        <div class="row" style="margin-top:1.5em">
+            <div class="col-lg-2 col-lg-offset-2">
+                <h5>Add New Comment:</h5>
+            </div>
+            <div class="col-lg-6" style="padding-top:1em">
+                @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    //Id,AuthorId,BlogPostId,Created,Modified,ModifiedNote,Body,ProfilePicURL,Private
+                    <input type="hidden" name="BlogPostId" value="@Model.Id" />
+                    <div class="form-group">
+                        <label></label>
+                        <div class="col-md-10">
+                            <textarea name="Body" class="form-control form-gradient" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="Private" value="TRUE" /> Private</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn links-btn">Submit</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-2">
+                Add New Comment:
+            </div>
+            <div class="col-lg-6">
+                @Html.ActionLink("Log in to leave a comment.", "Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, new { @class = "links-btn btn" }) @*The returnUrl piece is called the routeValue. This value allows you to create a redirect path to come back to it, or send you somewhere else afterwards.*@
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-left">
+            <button class="btn links-btn" style="font-size:1.25em" id="comments-title">Comments</button>
+        </div>
+    </div>
+    <div id="comments-list" style="display:none">
+        @{ 
+        int num = 0;
+        foreach (var item in Model.Comments.Reverse())
+        {
+            <div class="row comment-gradient">
+                <div class="col-lg-8 col-lg-offset-2" style="border-top:solid; border-width:1px; padding-top:1em">
+                    <p align="left">@Html.Raw(item.Body)</p>
+                    <p align="right">@Html.Raw(item.Author.DisplayName)</p>
+                    <p align="right" id="comment_created_@num"></p>
+                </div>
+                @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+                {
+                    <div class="col-lg-2">
+                        @Html.ActionLink("Edit", "Edit", "Comments", new { id = item.Id }, new { @class = "links-btn btn" })
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = item.Id }, new { @class = "links-btn btn" })
+                    </div>
+                }
+            </div>
+            num++;
+        }
+        }
+    </div>
+</div>
+
+@*<div>
+    <h4>BlogPost</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedNote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Private)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Private)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+        <dt>
+            Comments:
+        </dt>
+        @foreach (var item in Model.Comments)
+        {
+            <dd>
+                @Html.Raw(item.Body)
+            </dd>
+        }
+        @if (Request.IsAuthenticated)
+        {
+        <dt>
+            Add New Comment:
+        </dt>
+        <dd>
+            @using (Html.BeginForm("Create", "Comments", FormMethod.Post,new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                //Id,AuthorId,BlogPostId,Created,Modified,ModifiedNote,Body,ProfilePicURL,Private
+                <input type="hidden" name="BlogPostId" value="@Model.Id" />
+                <div class="form-group">
+                    <label></label>
+                    <div class="col-md-10">
+                        <input type="text" name="Body" class="form-control" required id="comment-body"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <label>Private<input type="checkbox" name="Private" /></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+            </dd>
+        } else
+        {
+            <dt>
+                Add New Comment:
+            </dt>
+            <dd>
+                @Html.ActionLink("Log in to leave a comment.", "Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, new { @class = "links" }) @*The returnUrl piece is called the routeValue. This value allows you to create a redirect path to come back to it, or send you somewhere else afterwards.*@
+@*</dd>
+            }
+        </dl>
+    </div>*@
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "links-btn btn" })
+    }
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "links-btn btn" })
+</p>
+
+@section scripts{
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script type="text/javascript">
+        function fixDate(count, created) {
+            var time = getUserTime(created);
+            $("#comment_created_" + count).html("Created: " + time);
+        }
+
+        var blogDate = getUserTime(@Model.Created.ToUniversalTime().ToString());
+        $("#post_created").html("Created: " + blogDate);
+
+            @{
+                int count = 0;
+                foreach (var comment in Model.Comments.Reverse())
+                {
+                    @:fixDate(@count,'@comment.Created.ToUniversalTime().ToString()');
+                    count++;
+                }
+            }
+
+        $(function () {
+            tinymce.init({
+                selector: '#comment-body'
+            });
+        });
+    </script>
+
+}

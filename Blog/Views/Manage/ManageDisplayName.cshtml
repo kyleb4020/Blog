@@ -1,0 +1,30 @@
+﻿@model Blog.Models.ApplicationUser
+@{
+    ViewBag.Title = "Add Display Name";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h4>You do not currently have a Display Name. Add one below.</h4>
+
+@using (Html.BeginForm("ManageDisplayName", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Change/Add your Diplay Name</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.DisplayName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.DisplayName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
