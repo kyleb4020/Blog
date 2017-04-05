@@ -322,6 +322,8 @@ __pycache__/
 
 private.config
 Blog/[Ww]eb.config
+Blog/[Ww]eb.[Dd]ebug.config
+Blog/[Ww]eb.[Rr]elease.config
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
