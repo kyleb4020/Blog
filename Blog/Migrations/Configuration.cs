@@ -28,20 +28,20 @@ namespace Blog.Migrations
             var userManager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
 
-            if(!context.Users.Any(u=>u.Email == "kyle.r.bartholomew@gmail.com"))
+            if (!context.Users.Any(u => u.Email == "demoadmin@mailinator.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "kyle.r.bartholomew@gmail.com",
-                    Email = "kyle.r.bartholomew@gmail.com",
-                    FirstName = "Kyle",
-                    LastName = "Bartholomew",
-                    DisplayName = "Kb419200"
-                }, "Clyph@419200");
+                    UserName = "demoadmin@mailinator.com",
+                    Email = "demoadmin@mailinator.com",
+                    FirstName = "Demo",
+                    LastName = "Admin",
+                    DisplayName = "DA123"
+                }, "DemoAdmin123!");
+                var userId = userManager.FindByEmail("demoadmin@mailinator.com").Id;
+                userManager.AddToRole(userId, "Admin");
             }
-
-            var userId = userManager.FindByEmail("kyle.r.bartholomew@gmail.com").Id;
-            userManager.AddToRole(userId, "Admin");
+            
 
             //Set up Moderator
 
