@@ -60,10 +60,11 @@ namespace Blog.Migrations
                     LastName = "Moderator",
                     DisplayName = "CfMod"
                 }, "LearnToCode!");
+                var userId = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+                userManager.AddToRole(userId, "Moderator");
             }
 
-            userId = userManager.FindByEmail("moderator@coderfoundry.com").Id;
-            userManager.AddToRole(userId, "Moderator");
+            
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
