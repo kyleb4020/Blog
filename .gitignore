@@ -321,7 +321,6 @@ __pycache__/
 *.xsd.cs
 
 private.config
-Blog/[Ww]eb.config
 Blog/[Ww]eb.[Dd]ebug.config
 Blog/[Ww]eb.[Rr]elease.config
 
