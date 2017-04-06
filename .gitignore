@@ -320,7 +320,6 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-private.config
 Blog/[Ww]eb.[Dd]ebug.config
 Blog/[Ww]eb.[Rr]elease.config
 
