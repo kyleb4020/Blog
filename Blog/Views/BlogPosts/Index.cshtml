@@ -223,10 +223,10 @@
                 int count = 0;
                 foreach (var blog in Model)
                 {
-                    @:fixDate(@count,'@blog.Created.ToUniversalTime().ToString()');
+                    @:fixDate(@count,'@blog.Created.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")');
                     if(blog.Modified != null)
                     {
-                        @:fixDate2(@count, '@blog.Modified.Value.ToUniversalTime().ToString()');
+                        @:fixDate2(@count, '@blog.Modified.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")');
                     }
                     count++;
                 }

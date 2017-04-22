@@ -645,12 +645,14 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\AJAX_logo_by_gengns.svg.png" />
     <Content Include="Uploads\Bathroom.jpeg" />
     <Content Include="Uploads\blog button.jpg" />
     <Content Include="Uploads\bugzapper_twogrey.png" />
     <Content Include="Uploads\cheat_code.jpg" />
     <Content Include="Uploads\Closet.jpeg" />
     <Content Include="Uploads\coder foundry.png" />
+    <Content Include="Uploads\csharp-and-js-arm-wrestling.png" />
     <Content Include="Uploads\favicon-16x16.png" />
     <Content Include="Uploads\favicon-32x32.png" />
     <Content Include="Uploads\favicon.ico" />

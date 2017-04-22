@@ -267,24 +267,24 @@
             var time = getUserTime(created);
             $("#comment_created_" + count).html("Created: " + time);
         }
+        $(document).ready(function(){
+            var blogDate = getUserTime('@Model.Created.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")');
+            $("#post_created").html("Created: " + blogDate);
 
-        var blogDate = getUserTime(@Model.Created.ToUniversalTime().ToString());
-        $("#post_created").html("Created: " + blogDate);
-
-            @{
-                int count = 0;
-                foreach (var comment in Model.Comments.Reverse())
-                {
-                    @:fixDate(@count,'@comment.Created.ToUniversalTime().ToString()');
-                    count++;
-                }
+        @{
+            int count = 0;
+            foreach (var comment in Model.Comments.Reverse())
+            {
+                @:fixDate(@count,'@comment.Created.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")');
+                count++;
             }
-
-        $(function () {
-            tinymce.init({
-                selector: '#comment-body'
+        }
+            $(function () {
+                tinymce.init({
+                    selector: '#comment-body'
+                });
             });
-        });
+        })
     </script>
 
 }

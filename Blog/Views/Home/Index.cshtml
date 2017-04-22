@@ -224,15 +224,15 @@
         function fixDate(count, created) {
             var time1 = getUserTime(created);
             $("#created_date_" + count).html("Created: " + time1);
-            
+
         }
 
-            @{
+        @{
                 int count = 0;
                 foreach (var blog in Model.Reverse())
                 {
-                    @:fixDate(@count,'@blog.Created.ToUniversalTime().ToString()');
-                    count++;
+                    @:fixDate(@count,'@blog.Created.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")');
+                            count++;
                 }
             }
 
